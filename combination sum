@@ -1,0 +1,25 @@
+class Solution {
+public:
+   void function(vector<int>&candidates ,int index,int target,vector<int>&temp,vector<vector<int>>&ans){
+    if(target==0){
+        ans.push_back(temp);
+        return ;
+    }
+    if(target<0 || index==candidates.size()){
+        return;
+    }
+    temp.push_back(candidates[index]);
+    function(candidates,index,target-candidates[index],temp,ans);
+    temp.pop_back();
+    if( index+1<candidates.size()){
+        function(candidates,index+1,target,temp,ans);
+    }
+   }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int>temp;
+        vector<vector<int>>ans;
+        function(candidates,0,target,temp,ans);
+       return ans;
+         
+    }
+};
